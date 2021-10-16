@@ -2,13 +2,14 @@
   "name": "sppt-task",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run watch:css && vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "prepare": "husky install",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "commit": "git-cz",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/output.css"
   },
   "dependencies": {
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
@@ -23,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vitejs/plugin-react": "^1.0.0",
+    "autoprefixer": "^10.3.7",
     "chalk": "^4.1.2",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
@@ -37,7 +39,10 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.2.3",
+    "postcss": "^8.3.9",
+    "postcss-cli": "^9.0.1",
     "prettier": "^2.4.1",
+    "tailwindcss": "^2.2.17",
     "typescript": "^4.3.2",
     "vite": "^2.6.4"
   },
