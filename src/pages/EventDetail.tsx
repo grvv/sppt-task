@@ -1,10 +1,11 @@
 import { ReactElement } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import Loader from "../components/Loader";
 import { Employee, EventDetails } from "../models";
 import { readableDate, useAxios } from "../helpers";
 import Table, { TableColumn } from "../components/Table";
+import Button from "../components/Button";
 
 export const EVENT_DETAIL_TABLE_CONFIG: TableColumn<Employee>[] = [
   {
@@ -34,6 +35,7 @@ export const EVENT_DETAIL_TABLE_CONFIG: TableColumn<Employee>[] = [
 ];
 
 function EventDetail(): ReactElement {
+  const history = useHistory();
   const { id } = useParams<{ id: string }>();
 
   const { loading, error, response } = useAxios<EventDetails>({
@@ -53,8 +55,9 @@ function EventDetail(): ReactElement {
   return (
     <div className="bg-white shadow overflow-auto sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6 my-2">
-        <h2 className="text-base my-3 text-indigo-600 font-semibold tracking-wide uppercase">
+        <h2 className="flex justify-between text-base my-3 text-indigo-600 font-semibold tracking-wide uppercase">
           Event Details
+          <Button onClick={() => history.goBack()}>Go Back!</Button>
         </h2>
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {position?.name}
