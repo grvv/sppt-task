@@ -5,9 +5,16 @@ This project is set up with, [Vite](https://vitejs.dev/), [React](https://reactj
 
 ## How to start the project ( this project uses yarn as the package manager )
 
-For runnning it locally: ``` yarn dev ```
+For runnning it locally: 
+``` 
+yarn or yarn install ( for instaliing dependency )
+yarn dev ( running a dev build )
+```
 
-For making a prod build: ``` yarn build ```
+For making a prod build: 
+``` 
+yarn build
+```
 
 ## Links
 
