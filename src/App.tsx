@@ -1,25 +1,41 @@
-import * as React from "react";
-import { useDarkMode } from "./helpers";
+import { useState } from "react";
+import { Switch, Route, useLocation } from "react-router-dom";
 
 import "./styles/output.css";
+import ROUTES from "./routes";
+import AppBar from "./components/AppBar";
+import Button from "./components/Button";
+import ModalWithDateFilters from "./components/ModalWithDateFilters";
+
+const ROOT_ROUTE = "/";
 
 const App: React.VoidFunctionComponent = () => {
-  const [, toggleDarkMode] = useDarkMode();
+  const location = useLocation();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className="bg-gray-900 p-20 h-screen flex justify-center items-start flex-col dark:bg-red-300">
-      <h1 className="text-5xl text-white">Hello Tailwind 👋</h1>
-      <p className="text-gray-400 mt-5 text-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-        consequuntur odio aut nobis ab quis? Reiciendis doloremque ut quo fugiat
-        eveniet tempora, atque alias earum ullam inventore itaque sapiente iste?
-      </p>
-      <button
-        type="button"
-        onClick={toggleDarkMode}
-        className="p-4 bg-green-600 rounded-lg font-bold text-white mt-5 hover:bg-gray-600"
-      >
-        Hello Friends 🚀
-      </button>
+    <div className="flex flex-col w-screen h-screen px-4">
+      <AppBar>
+        {location.pathname === ROOT_ROUTE && (
+          <Button onClick={() => setIsModalOpen(!isModalOpen)}>
+            Select Date Filters
+          </Button>
+        )}
+      </AppBar>
+      <Switch>
+        {ROUTES.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            exact={route.exact}
+            component={route.component}
+          />
+        ))}
+      </Switch>
+      <ModalWithDateFilters
+        isOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(!isModalOpen)}
+      />
     </div>
   );
 };

@@ -18,8 +18,10 @@ export function useDarkMode(initialValue = false): [boolean, () => void] {
     const onOsThemeChange = (e: MediaQueryListEvent) => {
       if (e.matches) {
         document.documentElement.classList.add("dark");
+        setDarkMode(true);
       } else {
         document.documentElement.classList.remove("dark");
+        setDarkMode(false);
       }
     };
 
@@ -27,7 +29,7 @@ export function useDarkMode(initialValue = false): [boolean, () => void] {
     return () => {
       colorSchemeQuery.removeEventListener("change", onOsThemeChange);
     };
-  }, []);
+  }, [setDarkMode]);
 
   return [darkMode, toggleDarkMode];
 }
