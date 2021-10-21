@@ -6,7 +6,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "prepare": "husky install",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
     "commit": "git-cz",
     "pre-commit": "lint-staged",
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/output.css"
@@ -66,9 +66,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix",
-      "git add"
+    "*.{ts,tsx}": [
+      "eslint --fix"
     ]
   }
 }
